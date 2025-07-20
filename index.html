@@ -1,3 +1,4 @@
+<!-- Full updated single-file WordVision with polished UX and mobile fixes -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,9 +131,13 @@
       padding: 8px 12px;
       border-radius: 20px;
       box-shadow: 0 0 8px var(--glow);
+      z-index: 1000;
     }
     #loading {
       margin-top: 10px;
+    }
+    ul {
+      padding-left: 20px;
     }
     @media (max-width: 500px) {
       .input-container {
@@ -142,6 +147,11 @@
       .mic-btn {
         width: 100%;
         border-radius: 10px;
+      }
+      .toggle-mode {
+        top: 10px;
+        right: 10px;
+        font-size: 0.8em;
       }
     }
   </style>
@@ -160,7 +170,9 @@
     <div class="result" id="result">
       <h2 id="word"></h2>
       <p id="phonetics"></p>
-      <p><strong>Meaning:</strong> <span id="meaning"></span></p>
+      <p><strong>Meaning:</strong>
+        <ul id="meaning"></ul>
+      </p>
       <button id="playAudio" style="display:none;">🔊 Play Pronunciation</button>
       <audio id="audioPlayer" src=""></audio>
       <div class="image-preview">
@@ -208,7 +220,16 @@
         const entry = data[0];
         wordElement.textContent = word.charAt(0).toUpperCase() + word.slice(1);
         phoneticsElement.textContent = entry.phonetics.find(p => p.text)?.text || '';
-        meaningElement.textContent = entry.meanings[0].definitions[0].definition || 'No meaning found.';
+        
+        meaningElement.innerHTML = "";
+        entry.meanings.forEach(meaning => {
+          const def = meaning.definitions[0].definition;
+          if (def) {
+            const li = document.createElement('li');
+            li.textContent = def;
+            meaningElement.appendChild(li);
+          }
+        });
 
         const audioUrl = entry.phonetics.find(p => p.audio)?.audio;
         if (audioUrl) {
@@ -249,7 +270,7 @@
           wordImage.classList.add('loaded');
         };
         wordImage.onerror = () => {
-          wordImage.src = 'https://via.placeholder.com/600x400?text=Error+Loading+Image';
+          wordImage.src = 'https://via.placeholder.com/600x400?text=Image+Error';
           wordImage.style.display = 'block';
         };
       } catch (error) {
@@ -259,7 +280,6 @@
       }
     }
 
-    // 🎤 Voice Input using Web Speech API
     function startListening() {
       if (!('webkitSpeechRecognition' in window)) {
         alert("Voice input not supported in this browser.");
