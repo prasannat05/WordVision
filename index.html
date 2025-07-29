@@ -186,7 +186,7 @@
 
         const entry = data[0];
         wordElement.textContent = word.charAt(0).toUpperCase() + word.slice(1);
-        phoneticsElement.textContent = entry.phonetics.find(p => p.text)?.text || '';
+
         
         meaningElement.innerHTML = "";
         entry.meanings.forEach(meaning => {
