@@ -137,7 +137,7 @@
   <div id="loading" style="display:none;">🔄 Loading...</div>
   <div class="result" id="result">
     <h2 id="word"></h2>
-    <p id="phonetics"></p>
+   
     <p><strong>Meaning:</strong>
       <ul id="meaning"></ul>
     </p>
@@ -152,7 +152,7 @@
     const wordInput = document.getElementById('wordInput');
     const resultDiv = document.getElementById('result');
     const wordElement = document.getElementById('word');
-    const phoneticsElement = document.getElementById('phonetics');
+  
     const meaningElement = document.getElementById('meaning');
     const wordImage = document.getElementById('wordImage');
     const playAudioBtn = document.getElementById('playAudio');
@@ -185,9 +185,7 @@
         }
 
         const entry = data[0];
-        wordElement.textContent = word.charAt(0).toUpperCase() + word.slice(1);
-
-        
+        wordElement.textContent = word.charAt(0).toUpperCase() + word.slice(1);        
         meaningElement.innerHTML = "";
         entry.meanings.forEach(meaning => {
           const def = meaning.definitions[0].definition;
