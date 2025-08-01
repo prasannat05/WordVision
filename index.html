@@ -1,376 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WordVision</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: linear-gradient(-45deg, #a1c4fd, #c2e9fb, #fbc2eb, #a6c1ee);
-      --dark-bg: linear-gradient(-45deg, #1e3c72, #2a5298, #1e3c72, #0f2027);
-      --text: #111;
-      --accent: #ff2d75;
-      --button: #111;
-      --button-text: #fff;
-    }
-    body.dark {
-      --bg: var(--dark-bg);
-      --text: #111;
-      --accent: #ff66a3;
-      --button: #fff;
-      --button-text: #111;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-      text-align: center;
-      transition: all 0.5s ease;
-    }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    h1 {
-      font-size: 2.8rem;
-      font-weight: 900;
-      margin-bottom: 0.4em;
-      animation: fadeIn 1s ease;
-    }
-    h2 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 1em;
-    }
-    .input-container {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      max-width: 500px;
-      margin: 0 auto 1em;
-      animation: fadeIn 1.5s ease;
-    }
-    input[type="text"] {
-      padding: 12px 16px;
-      font-size: 1em;
-      border-radius: 10px;
-      border: none;
-      width: 100%;
-      max-width: 250px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: 0.3s;
-    }
-    input:focus {
-      outline: none;
-      transform: scale(1.02);
-    }
-    .mic-btn, .search-btn {
-      padding: 12px 16px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1em;
-      background: var(--button);
-      color: var(--button-text);
-      cursor: pointer;
-      transition: 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    .mic-btn:hover, .search-btn:hover {
-      transform: scale(1.05);
-    }
-    .search-btn {
-      background: var(--accent);
-      color: white;
-    }
-    .toggle-mode {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: transparent;
-      border: 2px solid var(--text);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.85em;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .toggle-mode:hover {
-      background: var(--text);
-      color: var(--button-text);
-    }
-    .result {
-      margin-top: 2em;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 24px;
-      border-radius: 16px;
-      max-width: 700px;
-      width: 100%;
-      text-align: left;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-      display: none;
-      animation: fadeInUp 1s ease forwards;
-    }
-    .result.show {
-      display: block;
-    }
-    .phonetic {
-      font-style: italic;
-      font-size: 0.95rem;
-      margin-top: -10px;
-      margin-bottom: 1em;
-    }
-    .image-preview img {
-      width: 100%;
-      margin-top: 20px;
-      border-radius: 12px;
-      transition: 0.3s ease;
-    }
-    .image-preview img:hover {
-      transform: scale(1.02);
-    }
-    ul {
-      padding-left: 20px;
-    }
-    #loading {
-      margin-top: 10px;
-      font-style: italic;
-    }
-    .history {
-      margin-top: 2em;
-      max-width: 600px;
-      animation: fadeIn 2s ease;
-    }
-    .history h3 {
-      margin-bottom: 0.5em;
-    }
-    .history ul {
-      list-style: none;
-      padding: 0;
-    }
-    .history li {
-      cursor: pointer;
-      color: var(--accent);
-      margin: 4px 0;
-      transition: 0.3s;
-    }
-    .history li:hover {
-      text-decoration: underline;
-      transform: translateX(5px);
-    }
-
-    @media (max-width: 500px) {
-      .input-container {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .toggle-mode {
-        top: 10px;
-        right: 10px;
-      }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordVision Pro - Professional Dictionary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <button class="toggle-mode" onclick="toggleMode()">Toggle</button>
-  <h1>WordVision</h1>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+    </button>
 
-  <div class="input-container">
-    <input type="text" id="wordInput" placeholder="Type a word" />
-    <button class="mic-btn" onclick="startListening()">🎤</button>
-    <button class="search-btn" onclick="debouncedSearch()">Search</button>
-  </div>
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-container">
+                <h1 class="app-title">WordVision <span class="title-accent">Pro</span></h1>
+                <p class="app-subtitle">Professional Dictionary & Visual Learning</p>
+            </div>
+        </header>
 
-  <div id="loading" style="display:none;">🔄 Loading...</div>
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-card glass-card">
+                <div class="search-container">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="wordInput" 
+                            class="search-input" 
+                            placeholder="Enter a word to explore..."
+                            autocomplete="off"
+                        >
+                        <label class="input-label" for="wordInput">Search Word</label>
+                    </div>
+                    <div class="search-actions">
+                        <button class="action-btn voice-btn" id="voiceBtn" aria-label="Voice input">
+                            <span class="btn-icon">🎤</span>
+                            <span class="btn-text">Voice</span>
+                        </button>
+                        <button class="action-btn search-btn" id="searchBtn">
+                            <span class="btn-icon">🔍</span>
+                            <span class="btn-text">Search</span>
+                        </button>
+                    </div>
+                </div>
 
-  <div class="result" id="result">
-    <h2 id="word"></h2>
-    <p id="phonetic" class="phonetic"></p>
-    <p><strong>Meaning:</strong></p>
-    <ul id="meaning"></ul>
-    <button id="playAudio" style="display:none;">🔊 Play Pronunciation</button>
-    <audio id="audioPlayer" src=""></audio>
-    <div class="image-preview">
-      <img id="wordImage" alt="Word visual" />
+                <!-- Search Suggestions -->
+                <div class="suggestions-container" id="suggestions">
+                    <div class="suggestions-header">Popular searches:</div>
+                    <div class="suggestion-chips">
+                        <button class="suggestion-chip" data-word="magnificent">magnificent</button>
+                        <button class="suggestion-chip" data-word="serendipity">serendipity</button>
+                        <button class="suggestion-chip" data-word="eloquent">eloquent</button>
+                        <button class="suggestion-chip" data-word="innovation">innovation</button>
+                        <button class="suggestion-chip" data-word="tranquil">tranquil</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div class="loading-container" id="loadingContainer">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">Searching...</p>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection">
+            <div class="result-card glass-card" id="resultCard">
+                <!-- Word Header -->
+                <div class="word-header">
+                    <div class="word-info">
+                        <h2 class="word-title" id="wordTitle"></h2>
+                        <p class="word-phonetic" id="wordPhonetic"></p>
+                    </div>
+                    <button class="audio-btn" id="audioBtn" style="display: none;">
+                        <span class="audio-icon">🔊</span>
+                        <span class="audio-text">Play</span>
+                    </button>
+                </div>
+
+                <!-- Definitions -->
+                <div class="definitions-container">
+                    <h3 class="section-title">Definitions</h3>
+                    <div class="definitions-list" id="definitionsList"></div>
+                </div>
+
+                <!-- Word Image -->
+                <div class="image-container" id="imageContainer">
+                    <h3 class="section-title">Visual Reference</h3>
+                    <div class="image-wrapper">
+                        <img id="wordImage" class="word-image" alt="Visual reference" style="display: none;">
+                        <div class="image-placeholder" id="imagePlaceholder">
+                            <span class="placeholder-icon">🖼️</span>
+                            <span class="placeholder-text">Loading image...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <audio id="audioPlayer" preload="none"></audio>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section class="history-section" id="historySection">
+            <div class="history-card glass-card">
+                <h3 class="section-title">Recent Searches</h3>
+                <div class="history-list" id="historyList">
+                    <p class="history-empty">No recent searches</p>
+                </div>
+            </div>
+        </section>
     </div>
-  </div>
 
-  <div class="history" id="historyContainer">
-    <h3>Recent Searches</h3>
-    <ul id="historyList"></ul>
-  </div>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon" id="toastIcon"></span>
+        <span class="toast-message" id="toastMessage"></span>
+    </div>
 
-  <script>
-    const wordInput = document.getElementById('wordInput');
-    const resultDiv = document.getElementById('result');
-    const wordElement = document.getElementById('word');
-    const phoneticElement = document.getElementById('phonetic');
-    const meaningElement = document.getElementById('meaning');
-    const wordImage = document.getElementById('wordImage');
-    const playAudioBtn = document.getElementById('playAudio');
-    const audioPlayer = document.getElementById('audioPlayer');
-    const loading = document.getElementById('loading');
-    const historyList = document.getElementById('historyList');
-    const API_KEY = '648F15iJlbvHludU9A9311z2exJ2NOBFCwYPbR9uf91HLy7idBe1yqre';
-    const cache = {};
-
-    wordInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') debouncedSearch();
-    });
-
-    function toggleMode() {
-      document.body.classList.toggle('dark');
-    }
-
-    function saveToHistory(word) {
-      let history = JSON.parse(localStorage.getItem('history') || '[]');
-      if (!history.includes(word)) {
-        history.unshift(word);
-        if (history.length > 5) history.pop();
-        localStorage.setItem('history', JSON.stringify(history));
-        renderHistory();
-      }
-    }
-
-    function renderHistory() {
-      const history = JSON.parse(localStorage.getItem('history') || '[]');
-      historyList.innerHTML = '';
-      history.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        li.onclick = () => fetchWordData(item);
-        historyList.appendChild(li);
-      });
-    }
-
-    function debouncedSearch() {
-      clearTimeout(window.debounceTimer);
-      window.debounceTimer = setTimeout(() => {
-        const word = wordInput.value.trim();
-        if (word) fetchWordData(word);
-      }, 500);
-    }
-
-    async function fetchWordData(word) {
-      if (cache[word]) {
-        displayWordData(word, cache[word]);
-        return;
-      }
-
-      try {
-        loading.style.display = 'block';
-        resultDiv.classList.remove('show');
-        wordImage.style.display = 'none';
-        meaningElement.innerHTML = '';
-        phoneticElement.textContent = '';
-
-        const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
-        const data = await res.json();
-
-        if (!res.ok || !data[0]) {
-          alert("Word not found.");
-          loading.style.display = 'none';
-          return;
-        }
-
-        cache[word] = data;
-        displayWordData(word, data);
-        saveToHistory(word);
-      } catch (err) {
-        alert("Error fetching data.");
-      } finally {
-        loading.style.display = 'none';
-      }
-    }
-
-    function displayWordData(word, data) {
-      const entry = data[0];
-      wordElement.textContent = word.charAt(0).toUpperCase() + word.slice(1);
-      meaningElement.innerHTML = '';
-
-      entry.meanings.forEach(meaning => {
-        meaning.definitions.forEach(def => {
-          const li = document.createElement('li');
-          li.innerHTML = `${def.definition}`;
-          if (def.example) {
-            li.innerHTML += `<br><em>Example: ${def.example}</em>`;
-          }
-          meaningElement.appendChild(li);
-        });
-      });
-
-      const phonetic = entry.phonetics.find(p => p.text)?.text;
-      phoneticElement.textContent = phonetic || '';
-
-      const audioUrl = entry.phonetics.find(p => p.audio)?.audio;
-      if (audioUrl) {
-        audioPlayer.src = audioUrl;
-        playAudioBtn.style.display = 'inline-block';
-        playAudioBtn.onclick = () => audioPlayer.play();
-      } else {
-        playAudioBtn.style.display = 'none';
-      }
-
-      fetchImage(word);
-      resultDiv.classList.add('show');
-    }
-
-    async function fetchImage(word) {
-      try {
-        const res = await fetch(`https://api.pexels.com/v1/search?query=${word}&per_page=1`, {
-          headers: { Authorization: API_KEY }
-        });
-        const data = await res.json();
-        wordImage.src = data.photos?.[0]?.src.large || 'https://via.placeholder.com/600x400?text=No+Image';
-        wordImage.style.display = 'block';
-      } catch {
-        wordImage.src = 'https://via.placeholder.com/600x400?text=Image+Error';
-        wordImage.style.display = 'block';
-      }
-    }
-
-    function startListening() {
-      if (!('webkitSpeechRecognition' in window)) {
-        alert("Voice input not supported.");
-        return;
-      }
-      const recognition = new webkitSpeechRecognition();
-      recognition.lang = 'en-US';
-      recognition.onresult = (e) => {
-        const spoken = e.results[0][0].transcript.trim();
-        wordInput.value = spoken;
-        fetchWordData(spoken);
-      };
-      recognition.onerror = (e) => alert("Voice error: " + e.error);
-      recognition.start();
-    }
-
-    // On load
-    renderHistory();
-  </script>
+    <script src="app.js"></script>
 </body>
 </html>
